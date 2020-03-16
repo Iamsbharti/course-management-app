@@ -30,7 +30,7 @@ export function saveCourse(course) {
     })
   })
     .then(handleResponse)
-    .then(handleError);
+    .catch(handleError);
 }
 
 export function deleteCourse(courseId) {
@@ -38,5 +38,5 @@ export function deleteCourse(courseId) {
     method: "DELETE"
   })
     .then(handleResponse)
-    .then(handleError);
+    .catch(handleError);
 }
