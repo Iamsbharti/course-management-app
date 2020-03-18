@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import CourseForm from "./CourseFom";
 import courseStores from "../stores/courseStores";
 import * as courseActions from "../actions/courseActions";
-
 import { toast } from "react-toastify";
+
 function ManageCoursePage(props) {
   const [errors, setErrors] = useState({});
+  const [courses, setCourses] = useState(courseStores.getCourses());
   const [course, setCourse] = useState({
     title: "",
     id: null,
@@ -15,11 +16,19 @@ function ManageCoursePage(props) {
   });
 
   useEffect(() => {
+    courseStores.addChangeListener(onChange);
     const slug = props.match.params.slug; //from the path /courses/:slug
-    if (slug) {
+    if (courses.length === 0) {
+      courseActions.loadCourses();
+    } else if (slug) {
       setCourse(courseStores.getCoursesBySlug(slug));
     }
-  }, [props.match.params.slug]);
+    return () => courseStores.removeChangeListener(onChange);
+  }, [courses.length, props.match.params.slug]);
+
+  function onChange() {
+    setCourses(courseStores.getCourses());
+  }
 
   function handleChange({ target }) {
     setCourse({
@@ -27,6 +36,7 @@ function ManageCoursePage(props) {
       [target.name]: target.value //[composed property]
     });
   }
+
   function formIsValid() {
     const _errors = {};
     if (!course.title) _errors.title = "Title Is Required";
