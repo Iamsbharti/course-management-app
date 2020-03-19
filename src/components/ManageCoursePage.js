@@ -14,22 +14,28 @@ function ManageCoursePage(props) {
     category: "",
     authorId: null
   });
-
+  
   useEffect(() => {
     courseStores.addChangeListener(onChange);
     const slug = props.match.params.slug; //from the path /courses/:slug
     if (courses.length === 0) {
       courseActions.loadCourses();
     } else if (slug) {
-      setCourse(courseStores.getCoursesBySlug(slug));
-    }
+      //check for course based on slug if not found redirect to PageNot Found
+        const _course_slug=courseStores.getCoursesBySlug(slug);
+        if(_course_slug!==undefined){
+          setCourse(courseStores.getCoursesBySlug(slug));    
+        }else{
+          props.history.push("/PageNotFound");
+        }
+     }
     return () => courseStores.removeChangeListener(onChange);
-  }, [courses.length, props.match.params.slug]);
+  }, [courses.length, props.match.params.slug,props]);
 
   function onChange() {
     setCourses(courseStores.getCourses());
   }
-
+ 
   function handleChange({ target }) {
     setCourse({
       ...course,
