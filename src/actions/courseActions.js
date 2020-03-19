@@ -1,7 +1,7 @@
 import dispatcher from "../appDispatcher";
 import actionTypes from "./actionTypes";
 import * as courseApi from "../api/courseApi";
-
+import { toast } from "react-toastify";
 export function saveCourse(course) {
   return courseApi.saveCourse(course).then(savedCourse => {
     //Hey dispatcher tell all the stores that a course was created
@@ -25,9 +25,14 @@ export function loadCourses() {
 
 export function deleteCourse(id) {
   return courseApi.deleteCourse(id).then(() => {
+    deleteNotification();
     dispatcher.dispatch({
       actionType: actionTypes.DELETE_COURSE,
       id: id
     });
   });
+}
+
+export function deleteNotification(){
+  toast.warn("Course Deleted")
 }

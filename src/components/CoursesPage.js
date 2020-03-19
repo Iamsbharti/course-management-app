@@ -23,7 +23,7 @@ function CoursesPage() {
       <Link to="/course" className="btn btn-primary">
         Add Course
       </Link>
-      <CourseList courses={courses} deleteCourse={deleteCourse} />
+      <CourseList courses={courses} deleteCourse={deleteCourse}  />
     </>
   );
 }

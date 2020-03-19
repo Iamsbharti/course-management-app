@@ -26,7 +26,7 @@ export function saveCourse(course) {
     body: JSON.stringify({
       ...course,
       //parse to int if ID is passed as sting
-      authorID: parseInt(course.authorID, 10)
+      authorId: parseInt(course.authorId, 10)
     })
   })
     .then(handleResponse)
