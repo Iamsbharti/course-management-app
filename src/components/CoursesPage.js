@@ -25,7 +25,6 @@ function CoursesPage() {
     setAuthors(courseStores.getAuthors());
   }
 
-  console.log("Courses:" + courses.map(course => console.log(course)));
   return (
     <>
       <h1>Courses</h1>

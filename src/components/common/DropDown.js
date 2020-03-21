@@ -20,7 +20,7 @@ function DropDown(props) {
   function onChange() {
     setAuthors(courseStores.getAuthors());
   }
-  console.log("Authors:" + authors.map(author => console.log(author.name)));
+
   return (
     <div className={wrapperClass}>
       <div className="field">
@@ -32,7 +32,7 @@ function DropDown(props) {
           className="form-control"
         >
           {authors.map(author => (
-            <option key={author.id} id={author.id}>
+            <option key={author.id} value={author.id}>
               {author.name}
             </option>
           ))}
