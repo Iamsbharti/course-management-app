@@ -52,7 +52,7 @@ const courses = [
     id: 8,
     title: "Architecting Applications for the Real World",
     slug: "architecting-applications-dotnet",
-    authorId: 1,
+    authorId: 2,
     category: "Software Architecture"
   },
   {
