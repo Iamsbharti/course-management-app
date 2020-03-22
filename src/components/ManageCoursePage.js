@@ -14,7 +14,8 @@ function ManageCoursePage(props) {
     category: "",
     authorId: null
   });
-  
+  //to avoid displaying empty form while trasition to PageNotFound
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     courseStores.addChangeListener(onChange);
     const slug = props.match.params.slug; //from the path /courses/:slug
@@ -22,20 +23,21 @@ function ManageCoursePage(props) {
       courseActions.loadCourses();
     } else if (slug) {
       //check for course based on slug if not found redirect to PageNot Found
-        const _course_slug=courseStores.getCoursesBySlug(slug);
-        if(_course_slug!==undefined){
-          setCourse(courseStores.getCoursesBySlug(slug));    
-        }else{
-          props.history.push("/PageNotFound");
-        }
-     }
+      const _course_slug = courseStores.getCoursesBySlug(slug);
+      if (_course_slug !== undefined) {
+        setCourse(courseStores.getCoursesBySlug(slug));
+        setIsLoading(true);
+      } else {
+        props.history.push("/PageNotFound");
+      }
+    }
     return () => courseStores.removeChangeListener(onChange);
-  }, [courses.length, props.match.params.slug,props]);
+  }, [courses.length, props.match.params.slug, props]);
 
   function onChange() {
     setCourses(courseStores.getCourses());
   }
- 
+
   function handleChange({ target }) {
     setCourse({
       ...course,
@@ -62,12 +64,14 @@ function ManageCoursePage(props) {
   return (
     <>
       <h1>Manage Course Page</h1>
-      <CourseForm
-        errors={errors}
-        course={course}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-      />
+      {isLoading && (
+        <CourseForm
+          errors={errors}
+          course={course}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+      )}
     </>
   );
 }
