@@ -11,7 +11,7 @@ class AuthorStores extends EventEmitter {
   }
 
   //Remove Listener
-  removeChaneListener(callback) {
+  removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
 
