@@ -5,8 +5,6 @@ import * as courseActions from "../actions/courseActions";
 import { toast } from "react-toastify";
 
 function ManageCoursePage(props) {
-  console.log("manage-course");
-  console.log(props);
   const [errors, setErrors] = useState({});
   const [courses, setCourses] = useState(courseStores.getCourses());
   const [course, setCourse] = useState({

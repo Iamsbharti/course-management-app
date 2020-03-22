@@ -5,10 +5,8 @@ import { toast } from "react-toastify";
 import AuthorForm from "./AuthorForm";
 
 function ManageAuthorPage(props) {
-  console.log("manage-author");
-  console.log(props);
   const [authors, setAuthors] = useState(authorStores.getAuthors());
-  const [errors, setErros] = useState({});
+  const [errors, setErrors] = useState({});
   const [author, setAuthor] = useState({
     id: null,
     name: ""
@@ -19,7 +17,6 @@ function ManageAuthorPage(props) {
     //Add Listener
     authorStores.addChangeListener(onChange);
     const id = props.match.params.id;
-    console.log("id" + id);
     if (authors.length === 0) {
       loadAuthors();
     } else if (id) {
@@ -33,7 +30,7 @@ function ManageAuthorPage(props) {
       }
     }
     return () => authorStores.removeChangeListener(onChange);
-  }, [authors.length, props.history, props.match.params.id, author]);
+  }, [authors.length, props.match.params.id, props]);
 
   function onChange() {
     setAuthors(authorStores.getAuthors());
@@ -49,7 +46,7 @@ function ManageAuthorPage(props) {
     const _errors = {};
     if (!author.id) _errors.id = "Id is Required";
     if (!author.name) _errors.name = "Author Name is Required";
-    setErros(_errors);
+    setErrors(_errors);
     return Object.keys(_errors).length === 0;
   }
   function handleSubmit(event) {
@@ -58,7 +55,7 @@ function ManageAuthorPage(props) {
     console.log(author);
     saveAuthor(author).then(() => {
       props.history.push("/authors");
-      toast.success("Author Saved");
+      toast.success("Course Saved!");
     });
   }
   return (
