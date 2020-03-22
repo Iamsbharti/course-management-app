@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import courseStores from "../stores/courseStores";
+import authorStores from "../stores/authorStores";
 import CourseList from "./CourseList";
 import { Link } from "react-router-dom";
 import {
@@ -10,19 +11,19 @@ import {
 
 function CoursesPage() {
   const [courses, setCourses] = useState(courseStores.getCourses());
-  const [authors, setAuthors] = useState(courseStores.getAuthors());
+  const [authors, setAuthors] = useState(authorStores.getAuthors());
 
   useEffect(() => {
     courseStores.addChangeListener(onChange);
     if (courseStores.getCourses().length === 0) loadCourses();
-    if (courseStores.getAuthors().length === 0) loadAuthors();
+    if (authorStores.getAuthors().length === 0) loadAuthors();
 
     return () => courseStores.removeChangeListener(onChange);
   }, []);
 
   function onChange() {
     setCourses(courseStores.getCourses());
-    setAuthors(courseStores.getAuthors());
+    setAuthors(authorStores.getAuthors());
   }
 
   return (

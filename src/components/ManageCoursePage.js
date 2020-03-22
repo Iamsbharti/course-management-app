@@ -15,7 +15,7 @@ function ManageCoursePage(props) {
     authorId: null
   });
   //to avoid displaying empty form while trasition to PageNotFound
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     courseStores.addChangeListener(onChange);
     const slug = props.match.params.slug; //from the path /courses/:slug
