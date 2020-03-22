@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import authorStores from "../../stores/authorStores";
-import { loadAuthors } from "../../actions/courseActions";
+import { loadAuthors } from "../../actions/authorActions";
 import PropTypes from "prop-types";
 
 function DropDown(props) {
-  console.log(props);
   let wrapperClass = "form-group";
   if (props.error.length > 0) {
     wrapperClass += " has-error";

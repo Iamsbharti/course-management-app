@@ -3,11 +3,8 @@ import courseStores from "../stores/courseStores";
 import authorStores from "../stores/authorStores";
 import CourseList from "./CourseList";
 import { Link } from "react-router-dom";
-import {
-  loadCourses,
-  deleteCourse,
-  loadAuthors
-} from "../actions/courseActions";
+import { loadCourses, deleteCourse } from "../actions/courseActions";
+import { loadAuthors } from "../actions/authorActions";
 
 function CoursesPage() {
   const [courses, setCourses] = useState(courseStores.getCourses());
@@ -31,7 +28,7 @@ function CoursesPage() {
       <h1>Courses</h1>
       <Link to="/course" className="btn btn-primary">
         Add Course
-      </Link>
+      </Link>{" "}
       <CourseList
         courses={courses}
         deleteCourse={deleteCourse}

@@ -1,7 +1,6 @@
 import dispatcher from "../appDispatcher";
 import actionTypes from "./actionTypes";
 import * as courseApi from "../api/courseApi";
-import * as authorApi from "../api/authorApi";
 import { toast } from "react-toastify";
 
 export function saveCourse(course) {
@@ -37,13 +36,4 @@ export function deleteCourse(id) {
 
 export function deleteNotification() {
   toast.warn("Course Deleted");
-}
-
-export function loadAuthors() {
-  return authorApi.getAuthors().then(authors => {
-    dispatcher.dispatch({
-      actionType: actionTypes.LOAD_AUTHORS,
-      authors: authors
-    });
-  });
 }

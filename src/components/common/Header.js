@@ -18,6 +18,10 @@ function Header() {
       <NavLink to="/about" activeStyle={activeStyle}>
         About
       </NavLink>
+      {" | "}
+      <NavLink to="/authors" activeStyle={activeStyle}>
+        Authors
+      </NavLink>
     </nav>
   );
 }

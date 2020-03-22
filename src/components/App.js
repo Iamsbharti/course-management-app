@@ -7,7 +7,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
 import ManageCoursePage from "./ManageCoursePage";
 import { ToastContainer } from "react-toastify";
-import DropDown from "./common/DropDown";
+import AuthorPage from "./AuthorPage";
+import ManageAuthorPage from "../components/ManageAuthorPage";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
@@ -18,10 +19,12 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/courses" component={CoursesPage} />
         <Route path="/about" component={AboutPage} />
+        <Route path="/authors" component={AuthorPage} />
         <Redirect from="/about-page" to="/about" />
         <Route path="/course/:slug" component={ManageCoursePage} />
         <Route path="/course" component={ManageCoursePage} />
-        <Route path="/drop" component={DropDown} />
+        <Route path="/author/:id" component={ManageAuthorPage} />
+        <Route path="/author" component={ManageAuthorPage} />
         <Route component={PageNotFound} />
       </Switch>
     </div>

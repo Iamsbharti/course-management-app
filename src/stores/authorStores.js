@@ -24,6 +24,9 @@ class AuthorStores extends EventEmitter {
   getAuthors() {
     return _authors;
   }
+  getAuthorById(id) {
+    return _authors.filter(author => author.id === id);
+  }
 }
 
 //Register this author store with Dispatcher
@@ -34,6 +37,17 @@ Dispatcher.register(action => {
       store.emitChange();
       break;
 
+    case actionTypes.UPDATE_AUTHOR:
+      _authors = _authors.map(author =>
+        author.id === action.author.id ? action.author : author
+      );
+      store.emitChange();
+      break;
+
+    case actionTypes.DELETE_AUTHOR:
+      _authors = _authors.filter(author => author.id !== parseInt(action.id));
+      store.emitChange();
+      break;
     default:
     //Do nothing
   }
