@@ -15,20 +15,22 @@ function AuthorList(props) {
         <tbody>
           {props.authors.map(author => {
             return (
-              <tr key={author.id}>
-                <td>
-                  <Link to={`/author/${author.id}`}>{author.id}</Link>
-                </td>
-                <td>{author.name}</td>
-                <td>
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={() => props.deleteAuthor(author.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              author.id && (
+                <tr key={author.id}>
+                  <td>
+                    <Link to={`/author/${author.id}`}>{author.id}</Link>
+                  </td>
+                  <td>{author.name}</td>
+                  <td>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => props.deleteAuthor(author.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              )
             );
           })}
         </tbody>

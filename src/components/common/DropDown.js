@@ -8,13 +8,14 @@ function DropDown(props) {
   if (props.error.length > 0) {
     wrapperClass += " has-error";
   }
-  const [authors, setAuthors] = useState(authorStores.getAuthors());
+  const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
     authorStores.addChangeListener(onChange);
     if (authorStores.getAuthors().length === 0) loadAuthors();
+    setAuthors(authorStores.getAuthors());
     return () => authorStores.removeChangeListener(onChange);
-  }, []);
+  }, [authors]);
 
   function onChange() {
     setAuthors(authorStores.getAuthors());
@@ -46,10 +47,10 @@ DropDown.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
   error: PropTypes.string
 };
 DropDown.defaultProps = {
-  error: ""
+  error: "",
+  value: 1
 };
 export default DropDown;
