@@ -52,10 +52,10 @@ function ManageAuthorPage(props) {
   function handleSubmit(event) {
     event.preventDefault();
     if (!formIsValid()) return;
-    console.log(author);
+    console.log("mange-auth-page:" + typeof author.id);
     saveAuthor(author).then(() => {
       props.history.push("/authors");
-      toast.success("Course Saved!");
+      toast.success("Author Saved!");
     });
   }
   return (

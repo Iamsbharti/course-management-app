@@ -13,6 +13,7 @@ export function loadAuthors() {
 }
 
 export function saveAuthor(author) {
+  console.log("save-auth:" + typeof author.id);
   return authorsApi.saveAuthor(author).then(savedAuthor => {
     dispatcher.dispatch({
       actionType: author.id

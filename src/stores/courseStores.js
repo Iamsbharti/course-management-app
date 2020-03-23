@@ -25,7 +25,6 @@ class CourseStore extends EventEmitter {
   }
 
   getCoursesBySlug(slug) {
-    console.log(_courses.map(c => console.log(c)));
     return _courses.find(course => course.slug === slug);
   }
 }
