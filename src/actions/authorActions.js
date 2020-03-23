@@ -14,7 +14,9 @@ export function loadAuthors() {
 
 export function saveAuthor(author) {
   console.log("save-auth:" + typeof author.id);
+  debugger;
   return authorsApi.saveAuthor(author).then(savedAuthor => {
+  debugger;
     dispatcher.dispatch({
       actionType: author.id
         ? actionTypes.UPDATE_AUTHOR

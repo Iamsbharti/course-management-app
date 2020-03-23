@@ -6,14 +6,7 @@ function AuthorForm(props) {
   return (
     <div>
       <form onSubmit={props.onSubmit}>
-        <TextInput
-          id="id"
-          name="id"
-          label="Author ID"
-          value={props.author.id || ""}
-          onChange={props.onChange}
-          error={props.errors.id}
-        />
+        
         <TextInput
           id="name"
           name="name"

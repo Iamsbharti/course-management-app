@@ -8,7 +8,6 @@ function AuthorList(props) {
       <table className="table">
         <thead>
           <tr>
-            <th>Author Id</th>
             <th>Author Name</th>
           </tr>
         </thead>
@@ -17,10 +16,7 @@ function AuthorList(props) {
             return (
               author.id && (
                 <tr key={author.id}>
-                  <td>
-                    <Link to={`/author/${author.id}`}>{author.id}</Link>
-                  </td>
-                  <td>{author.name}</td>
+                  <td><Link to={`/author/${author.id}`}>{author.name}</Link></td>
                   <td>
                     <button
                       className="btn btn-outline-danger"

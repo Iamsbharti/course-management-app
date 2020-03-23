@@ -8,7 +8,6 @@ function ManageAuthorPage(props) {
   const [authors, setAuthors] = useState(authorStores.getAuthors());
   const [errors, setErrors] = useState({});
   const [author, setAuthor] = useState({
-    id: null,
     name: ""
   });
   const [isLoading, setIsLoading] = useState(true);
@@ -42,9 +41,9 @@ function ManageAuthorPage(props) {
       [target.name]: target.value
     });
   }
+  
   function formIsValid() {
     const _errors = {};
-    if (!author.id) _errors.id = "Id is Required";
     if (!author.name) _errors.name = "Author Name is Required";
     setErrors(_errors);
     return Object.keys(_errors).length === 0;

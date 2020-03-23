@@ -28,7 +28,7 @@ TextInput.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.oneOfType([Number, String]),
+  value: PropTypes.oneOfType([Number, String,null]),
   error: PropTypes.string
 };
 TextInput.defaultProps = {

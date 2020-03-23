@@ -55,7 +55,8 @@ function ManageCoursePage(props) {
   }
   function handleSubmit(event) {
     event.preventDefault();
-    if (!formIsValid()) return;
+    if (!formIsValid()) return;     
+    console.log("man-course:"+typeof course.id);
     courseActions.saveCourse(course).then(() => {
       props.history.push("/courses");
       toast.success("Course Saved!");
